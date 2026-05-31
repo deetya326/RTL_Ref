@@ -1,0 +1,88 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001e4bb805c00 .scope module, "tb_sipo_shift" "tb_sipo_shift" 2 1;
+ .timescale 0 0;
+v000001e4bb7f4770_0 .var "clk", 0 0;
+v000001e4bb7f4810_0 .net "parallel_out", 3 0, v000001e4bb7467f0_0;  1 drivers
+v000001e4bb7f48b0_0 .var "rst_n", 0 0;
+v000001e4bb7f4950_0 .var "serial_in", 0 0;
+S_000001e4bb805d90 .scope module, "uut" "sipo_shift" 2 4, 3 1 0, S_000001e4bb805c00;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "serial_in";
+    .port_info 3 /OUTPUT 4 "parallel_out";
+v000001e4bb74baf0_0 .net "clk", 0 0, v000001e4bb7f4770_0;  1 drivers
+v000001e4bb7467f0_0 .var "parallel_out", 3 0;
+v000001e4bb7f4630_0 .net "rst_n", 0 0, v000001e4bb7f48b0_0;  1 drivers
+v000001e4bb7f46d0_0 .net "serial_in", 0 0, v000001e4bb7f4950_0;  1 drivers
+E_000001e4bb74cde0/0 .event negedge, v000001e4bb7f4630_0;
+E_000001e4bb74cde0/1 .event posedge, v000001e4bb74baf0_0;
+E_000001e4bb74cde0 .event/or E_000001e4bb74cde0/0, E_000001e4bb74cde0/1;
+    .scope S_000001e4bb805d90;
+T_0 ;
+    %wait E_000001e4bb74cde0;
+    %load/vec4 v000001e4bb7f4630_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v000001e4bb7467f0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v000001e4bb7467f0_0;
+    %parti/s 3, 0, 2;
+    %load/vec4 v000001e4bb7f46d0_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v000001e4bb7467f0_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_000001e4bb805c00;
+T_1 ;
+    %delay 5, 0;
+    %load/vec4 v000001e4bb7f4770_0;
+    %inv;
+    %store/vec4 v000001e4bb7f4770_0, 0, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_000001e4bb805c00;
+T_2 ;
+    %vpi_call 2 7 "$monitor", " clk = %b, rst_n = %b, serial_in = %b, parallel_out = %b", v000001e4bb7f4770_0, v000001e4bb7f48b0_0, v000001e4bb7f4950_0, v000001e4bb7f4810_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001e4bb7f4770_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001e4bb7f48b0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001e4bb7f4950_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001e4bb7f48b0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001e4bb7f4950_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001e4bb7f4950_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001e4bb7f4950_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001e4bb7f4950_0, 0, 1;
+    %delay 20, 0;
+    %vpi_call 2 14 "$finish" {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "sipo_tb.v";
+    "sipo_db.v";
