@@ -1,0 +1,78 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000002472b0547e0 .scope module, "tb_compound_gates" "tb_compound_gates" 2 2;
+ .timescale -9 -12;
+v000002472b064530_0 .var "a", 0 0;
+v000002472b0b20d0_0 .var "b", 0 0;
+v000002472b0b27b0_0 .net "nand_y", 0 0, L_000002472b199ae0;  1 drivers
+v000002472b0b18b0_0 .net "nor_y", 0 0, L_000002472b0b2bd0;  1 drivers
+v000002472b0b1bd0_0 .net "xnor_y", 0 0, L_000002472b0b2af0;  1 drivers
+v000002472b0b23f0_0 .net "xor_y", 0 0, L_000002472b0b2e00;  1 drivers
+S_000002472b055d50 .scope module, "uut" "compound_gates" 2 5, 3 1 0, S_000002472b0547e0;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "nand_y";
+    .port_info 3 /OUTPUT 1 "nor_y";
+    .port_info 4 /OUTPUT 1 "xor_y";
+    .port_info 5 /OUTPUT 1 "xnor_y";
+L_000002472b0645d0 .functor AND 1, v000002472b064530_0, v000002472b0b20d0_0, C4<1>, C4<1>;
+L_000002472b199ae0 .functor NOT 1, L_000002472b0645d0, C4<0>, C4<0>, C4<0>;
+L_000002472b199fc0 .functor OR 1, v000002472b064530_0, v000002472b0b20d0_0, C4<0>, C4<0>;
+L_000002472b0b2bd0 .functor NOT 1, L_000002472b199fc0, C4<0>, C4<0>, C4<0>;
+L_000002472b0b2e00 .functor XOR 1, v000002472b064530_0, v000002472b0b20d0_0, C4<0>, C4<0>;
+L_000002472b0b2b60 .functor XOR 1, v000002472b064530_0, v000002472b0b20d0_0, C4<0>, C4<0>;
+L_000002472b0b2af0 .functor NOT 1, L_000002472b0b2b60, C4<0>, C4<0>, C4<0>;
+v000002472b054970_0 .net *"_ivl_0", 0 0, L_000002472b0645d0;  1 drivers
+v000002472b199f20_0 .net *"_ivl_10", 0 0, L_000002472b0b2b60;  1 drivers
+v000002472b199a40_0 .net *"_ivl_4", 0 0, L_000002472b199fc0;  1 drivers
+v000002472b055ee0_0 .net "a", 0 0, v000002472b064530_0;  1 drivers
+v000002472b055f80_0 .net "b", 0 0, v000002472b0b20d0_0;  1 drivers
+v000002472b056020_0 .net "nand_y", 0 0, L_000002472b199ae0;  alias, 1 drivers
+v000002472b064350_0 .net "nor_y", 0 0, L_000002472b0b2bd0;  alias, 1 drivers
+v000002472b0643f0_0 .net "xnor_y", 0 0, L_000002472b0b2af0;  alias, 1 drivers
+v000002472b064490_0 .net "xor_y", 0 0, L_000002472b0b2e00;  alias, 1 drivers
+    .scope S_000002472b0547e0;
+T_0 ;
+    %vpi_call 2 7 "$display", "a b|NAND NOR XOR XNOR" {0 0 0};
+    %delay 10000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002472b064530_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002472b0b20d0_0, 0, 1;
+    %vpi_call 2 9 "$display", "%b %b | %b    %b   %b    %b", v000002472b064530_0, v000002472b0b20d0_0, v000002472b0b27b0_0, v000002472b0b18b0_0, v000002472b0b23f0_0, v000002472b0b1bd0_0 {0 0 0};
+    %delay 10000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002472b064530_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002472b0b20d0_0, 0, 1;
+    %vpi_call 2 11 "$display", "%b %b |  %b    %b   %b    %b", v000002472b064530_0, v000002472b0b20d0_0, v000002472b0b27b0_0, v000002472b0b18b0_0, v000002472b0b23f0_0, v000002472b0b1bd0_0 {0 0 0};
+    %delay 10000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002472b064530_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002472b0b20d0_0, 0, 1;
+    %vpi_call 2 13 "$display", "%b %b |  %b    %b   %b    %b", v000002472b064530_0, v000002472b0b20d0_0, v000002472b0b27b0_0, v000002472b0b18b0_0, v000002472b0b23f0_0, v000002472b0b1bd0_0 {0 0 0};
+    %delay 10000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002472b064530_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002472b0b20d0_0, 0, 1;
+    %vpi_call 2 15 "$display", "%b %b |  %b    %b   %b    %b", v000002472b064530_0, v000002472b0b20d0_0, v000002472b0b27b0_0, v000002472b0b18b0_0, v000002472b0b23f0_0, v000002472b0b1bd0_0 {0 0 0};
+    %delay 10000, 0;
+    %vpi_call 2 16 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "uni_excl_tb.v";
+    "uni_excl_db.v";
